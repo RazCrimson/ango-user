@@ -1,7 +1,8 @@
-from ango_user.app.core.config import Settings
-from fastapi import FastAPI
-from ango_user.app.routers.user import user_router
 import uvicorn
+from fastapi import FastAPI
+
+from ango_user.app.core.config import Settings
+from ango_user.app.routers.user import user_router
 
 settings = Settings()
 

@@ -1,10 +1,10 @@
 from uuid import UUID
 
+import ango_user.app.dao.user as user_dao
 from ango_user.app.core.exceptions import AuthException
 from ango_user.app.core.hash import hash_password, verify_password
-from ango_user.app.models.user import UserCreateRequest, UserDb, UserCreate, UserDeleteRequest, User
+from ango_user.app.models.user import User, UserCreate, UserCreateRequest, UserDb, UserDeleteRequest
 from ango_user.app.schemas.user import User as UserOrm
-import ango_user.app.dao.user as user_dao
 
 
 def create(create_request: UserCreateRequest) -> UserDb:
@@ -23,4 +23,3 @@ def delete(delete_request: UserDeleteRequest):
     if not verify_password(delete_request.password, user.pass_hash):
         raise AuthException(message="Invalid password")
     user_dao.delete(delete_request.email)
-

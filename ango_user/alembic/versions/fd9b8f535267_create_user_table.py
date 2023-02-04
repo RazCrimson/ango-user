@@ -1,19 +1,18 @@
 """create user table
 
 Revision ID: fd9b8f535267
-Revises: 
+Revises:
 Create Date: 2023-02-04 22:34:13.187254
 
 """
 import uuid
 
-from alembic import op
 import sqlalchemy as sa
+from alembic import op
 from sqlalchemy.dialects.postgresql import UUID
 
-
 # revision identifiers, used by Alembic.
-revision = 'fd9b8f535267'
+revision = "fd9b8f535267"
 down_revision = None
 branch_labels = None
 depends_on = None
