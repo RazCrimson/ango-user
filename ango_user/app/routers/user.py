@@ -1,12 +1,12 @@
-from fastapi import Cookie, APIRouter
-from jose import jwt, JWTError
+from fastapi import APIRouter, Cookie
+from jose import JWTError, jwt
 from pydantic import ValidationError
 
-from ango_user.app.core.config import Settings
-from ango_user.app.models.auth import TokenData
-from ango_user.app.models.user import User, UserDb, UserCreateRequest, UserDeleteRequest
-from ango_user.app.core.exceptions import AuthException
 import ango_user.app.services.user as user_service
+from ango_user.app.core.config import Settings
+from ango_user.app.core.exceptions import AuthException
+from ango_user.app.models.auth import TokenData
+from ango_user.app.models.user import User, UserCreateRequest, UserDb, UserDeleteRequest
 
 user_router = APIRouter()
 settings = Settings()

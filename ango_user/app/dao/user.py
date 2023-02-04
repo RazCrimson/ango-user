@@ -7,7 +7,6 @@ from ango_user.app.db.connection import DbConnector
 from ango_user.app.models.user import UserCreate, UserDb
 from ango_user.app.schemas.user import User as UserOrm
 
-
 settings = Settings()
 
 db_connector = DbConnector(settings.DATABASE_URI)
