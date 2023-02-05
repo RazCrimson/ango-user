@@ -3,16 +3,17 @@ from fastapi import APIRouter, Depends
 import ango_user.app.services.user as user_service
 from ango_user.app.core.config import Settings
 from ango_user.app.core.exceptions import AuthException
-from ango_user.app.middleware.auth import authorize_user, authorize_service
+from ango_user.app.middleware.auth import authorize_user, authorize_service, parse_token
+from ango_user.app.models.auth import TokenData
 from ango_user.app.models.user import User, UserCreateRequest, UserDb, UserDeleteRequest
 
 user_router = APIRouter()
 settings = Settings()
 
 
-@user_router.get("/me/{user_email}", dependencies=[Depends(authorize_user)])
-def read_users_me(user_email: str) -> User:
-    user = user_service.get_user_by_email(user_email)
+@user_router.get("/me")
+def read_users_me(token_data: TokenData = Depends(parse_token)) -> User:
+    user = user_service.get_user_by_email(token_data.email)
     if user is None:
         raise AuthException(message="Invalid user")
     return user
@@ -30,7 +31,7 @@ def get_user_by_email(user_email: str) -> User:
     return user
 
 
-@user_router.delete("/{user_email}", dependencies=[Depends(authorize_user)])
-def delete_user(delete_request: UserDeleteRequest):
-    user_service.delete(delete_request)
+@user_router.delete("/", dependencies=[Depends(authorize_user)])
+def delete_user(request: UserDeleteRequest):
+    user_service.delete(request)
     return "Deleted"

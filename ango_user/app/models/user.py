@@ -7,10 +7,10 @@ from pydantic import BaseModel, EmailStr
 
 class UserBase(BaseModel):
     email: EmailStr
-    init_vector: bytes
 
 
 class UserCreateRequest(UserBase):
+    init_vector: bytes
     password: bytes
 
 
