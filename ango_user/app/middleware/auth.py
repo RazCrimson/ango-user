@@ -27,5 +27,5 @@ def authorize_user(request: UserBase, access_token: str = Cookie(...)) -> None:
 
 
 def authorize_service(shared_secret: str = Cookie(...)):
-    if shared_secret != settings.SECRET_KEY:
+    if shared_secret != settings.SHARED_ACCESS_TOKEN:
         raise AuthException(message="Unauthorized service")

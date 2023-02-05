@@ -10,8 +10,11 @@ class Settings(BaseSettings):
         env_file_encoding = "utf-8"
         case_sensitive = True
 
+    # Server details
     SERVER_HOST: str
     SERVER_PORT: int
+    APP_DOMAIN: str
+    SHARED_ACCESS_TOKEN: str
 
     # Postgres DB
     DATABASE_HOST: str
