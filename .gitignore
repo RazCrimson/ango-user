@@ -126,3 +126,5 @@ cython_debug/
 # IntelliJ IDEs
 .idea/
 
+# CI/CD secrets
+.secrets
