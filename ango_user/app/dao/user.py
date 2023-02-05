@@ -25,10 +25,10 @@ def create(user_data: UserCreate) -> UserDb:
     return UserDb.from_orm(new_user_db)
 
 
-def get_user_by_email(email: str) -> UserOrm | None:
+def get_user_by_email(email: str) -> UserDb | None:
     session = db_connector.get_session()
     users = list(session.query(UserOrm).filter(UserOrm.email == email))
-    return users[0] if users else None
+    return UserDb.from_orm(users[0]) if users else None
 
 
 def delete(email: EmailStr):

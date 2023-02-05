@@ -26,7 +26,7 @@ def register_user(create_request: UserCreateRequest) -> UserDb:
 
 
 @user_router.get("/{user_email}", dependencies=[Depends(authorize_service)])
-def get_user_by_email(user_email: str) -> User:
+def get_user_by_email(user_email: str) -> UserDb:
     user = user_service.get_user_by_email(user_email)
     return user
 
