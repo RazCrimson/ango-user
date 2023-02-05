@@ -34,6 +34,5 @@ class UserDb(UserDbBase):
     pass_hash: bytes
 
 
-class UserDeleteRequest(BaseModel):
-    email: EmailStr
+class UserDeleteRequest(UserBase):
     password: bytes
