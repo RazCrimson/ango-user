@@ -15,11 +15,13 @@ class UserCreateRequest(UserBase):
 
 
 class UserCreate(UserBase):
+    init_vector: bytes
     pass_hash: bytes
 
 
 class UserDbBase(UserBase):
     id: UUID
+    init_vector: bytes
     last_signed_in: Optional[datetime] = None
 
     class Config:
