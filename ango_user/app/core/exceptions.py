@@ -3,7 +3,7 @@ from fastapi import status, HTTPException
 
 class AngoException(HTTPException):
     def __init__(self, status_code: int, message: str):
-        super(AngoException, self).__init__(status_code, message)
+        super(HTTPException, self).__init__(status_code, message)
 
 
 class AuthException(AngoException):
@@ -13,7 +13,7 @@ class AuthException(AngoException):
         message: str = "Unauthorized",
         headers: dict[str, str] = None,
     ):
-        super(AuthException, self).__init__(status_code, message)
+        super(AngoException, self).__init__(status_code, message)
         self.headers = {"WWW-Authenticate": "Bearer"} if not headers else headers
 
 
