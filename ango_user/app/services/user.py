@@ -14,7 +14,7 @@ def create(create_request: UserCreateRequest) -> UserDb:
     return created_user
 
 
-def get_user_by_email(email: str) -> UserOrm | None:
+def get_user_by_email(email: str) -> UserDb | None:
     return user_dao.get_user_by_email(email)
 
 
