@@ -31,19 +31,19 @@ jobs:
           tags: ${{ secrets.REGISTRY_URL }}/madlads-2k19/ango-user:testing
           file: ./Dockerfile
 
-    deploy:
-      runs-on: ubuntu-latest
-      needs: build
-      environment:
-        name: 'production'
-        url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-      steps:
-        - name: Deploy to Azure Web App
-          id: deploy-to-webapp
-          uses: azure/webapps-deploy@v2
-          with:
-            app-name: 'ango-user'
-            slot-name: 'production'
-            publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-            images: '${{ secrets.REGISTRY_URL }}/madlads-2k19/ango-user:testing'
+    steps:
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'ango-user'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          images: '${{ secrets.REGISTRY_URL }}/madlads-2k19/ango-user:testing'
