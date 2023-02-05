@@ -1,10 +1,9 @@
-from fastapi import status
+from fastapi import status, HTTPException
 
 
-class AngoException(Exception):
+class AngoException(HTTPException):
     def __init__(self, status_code: int, message: str):
-        super(Exception, self).__init__(message)
-        self.status_code = status_code
+        super(AngoException, self).__init__(status_code, message)
 
 
 class AuthException(AngoException):
