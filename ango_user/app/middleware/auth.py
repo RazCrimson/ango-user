@@ -1,6 +1,6 @@
+from fastapi import Cookie
 from jose import JWTError, jwt
 from pydantic import ValidationError
-from fastapi import Cookie
 
 from ango_user.app.core.config import Settings
 from ango_user.app.core.exceptions import AuthException
