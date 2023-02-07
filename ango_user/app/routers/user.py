@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 
 import ango_user.app.services.user as user_service
 from ango_user.app.core.config import Settings
-from ango_user.app.core.exceptions import AuthException
+from ango_user.app.core.exceptions import AuthException, NotFoundException
 from ango_user.app.middleware.auth import authorize_service, authorize_user, parse_token
 from ango_user.app.models.auth import TokenData
 from ango_user.app.models.user import User, UserCreateRequest, UserDb, UserDeleteRequest
@@ -28,6 +28,8 @@ def register_user(create_request: UserCreateRequest) -> UserDb:
 @user_router.get("/{user_email}", dependencies=[Depends(authorize_service)])
 def get_user_by_email(user_email: str) -> UserDb:
     user = user_service.get_user_by_email(user_email)
+    if not user:
+        raise NotFoundException(message="User not found")
     return user
 
 
